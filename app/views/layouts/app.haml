@@ -11,14 +11,14 @@
     #hd
       %h1 PoliVerse, What's happening?
       - if !current_user
-        = link_to "Register", new_account_path 
+        = link_to "Register", new_account_path, { :id => "register_link" } 
         |
-        = link_to "Log In", new_user_sessions_path
+        = link_to "Log In", new_user_sessions_path, { :id => "log_in_link" } 
         |
       - else
-        = link_to "My Account", account_path
+        = link_to "My Account", account_path, { :id => "my_account_link" } 
         |
-        = link_to "Logout", user_sessions_path, :method => :delete, :confirm => "Are you sure you want to logout?"
+        = link_to "Logout", user_sessions_path, :method => :delete, :confirm => "Are you sure you want to logout?", :id => "logout_link"
     %p{ :class => "notice" }
       = flash[ :notice ]
     = yield
