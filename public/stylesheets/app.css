@@ -1,0 +1,13 @@
+body { font-family: "Courier New", Arial; font-size: 12px; margin: 0;  background-image: url( ../images/repeatxy.gif ); background-repeat: repeat; }
+
+#wrapper { position: relative; width: 1000px; margin: auto; }
+
+#hd { width: 800px; padding-left: 10px; background-color: #fff; }
+
+#stream-container { position: relative; width: 1000px; height: 1000px; margin: auto; }
+
+#stream { position: absolute; top: 100px; left: 100px; background-color: #fff; width: 600px; padding: 20px; }
+
+#stream ul { padding: 0px; }
+
+#stream ul li { list-style-type: none; line-height: 29px; }

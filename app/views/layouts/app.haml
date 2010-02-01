@@ -1,0 +1,25 @@
+!!! 5
+%html
+  %head
+  %meta{ :charset => "utf-8" }
+  %title 
+    = "#{ controller.controller_name } : #{ controller.action_name }"
+  = stylesheet_link_tag "app"
+  = javascript_include_tag "modernizr-1.1.min.js"
+%body
+  #wrapper
+    #hd
+      %h1 PoliVerse, What's happening?
+      - if !current_user
+        = link_to "Register", new_account_path 
+        |
+        = link_to "Log In", new_user_sessions_path
+        |
+      - else
+        = link_to "My Account", account_path
+        |
+        = link_to "Logout", user_sessions_path, :method => :delete, :confirm => "Are you sure you want to logout?"
+    %p{ :class => "notice" }
+      = flash[ :notice ]
+    = yield
+
