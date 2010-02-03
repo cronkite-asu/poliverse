@@ -1,0 +1,72 @@
+level
+	name ( 'US', 'State', 'County' )
+
+state
+	name ( Arizona )
+	abbrev ( AZ )
+
+county
+	state_id
+	name ( Maricopa, Apache, ... )
+
+seat_type
+	name ( House, Senate, Office )
+
+seat
+	level
+	level_id
+	seat_type_id
+	title
+
+party
+	name
+	short_name
+
+committees
+	level
+	level_id
+	name
+
+politician 
+	firstname:string 
+	lastname:string 
+	twitter:string 
+	campaign_website:string 
+	email:string 
+	election_history:text 
+	title:string 
+	graphic_file_name:string 
+	graphic_content_type:string 
+	graphic_file_size:int 
+	graphic_updated_at:datetime 
+	contact_url:string 
+	official_website:string
+	party_id:string
+	seat_id
+
+committee_memberships
+	id
+	committee_id
+	politician_id
+	is_active
+
+
+Arizona House ( State House )
+Arizona Senate ( State Senate )
+US Congress ( US House and US Senate )
+State and County Offices ( State Office and County Office )
+List All ( ALL )
+
+
+Congressional District ( State House )
+Legislative District ( State Senate )
+County ( County Office )
+
+
+
+US House
+US Senate
+State House
+State Senate
+State Office
+County Office

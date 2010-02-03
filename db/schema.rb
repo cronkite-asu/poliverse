@@ -9,7 +9,81 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100201060244) do
+ActiveRecord::Schema.define(:version => 20100202164256) do
+
+  create_table "committee_memberships", :force => true do |t|
+    t.integer  "committee_id",                    :null => false
+    t.integer  "positician_id",                   :null => false
+    t.boolean  "is_active",     :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "committees", :force => true do |t|
+    t.integer  "level_id",                  :null => false
+    t.string   "name",       :limit => 200
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "counties", :force => true do |t|
+    t.integer  "state_id",                  :null => false
+    t.string   "name",       :limit => 200
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "levels", :force => true do |t|
+    t.string   "name",       :limit => 20
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "parties", :force => true do |t|
+    t.string   "name",       :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "politicians", :force => true do |t|
+    t.integer  "party_id",                            :null => false
+    t.integer  "seat_id",                             :null => false
+    t.string   "firstname",            :limit => 50
+    t.string   "lastname",             :limit => 50
+    t.string   "twitter",              :limit => 30
+    t.string   "campaign_website",     :limit => 500
+    t.string   "email",                :limit => 200
+    t.text     "election_history"
+    t.string   "graphic_file_name"
+    t.string   "graphic_content_type"
+    t.string   "graphic_file_size"
+    t.datetime "graphic_updated_at"
+    t.string   "contact_url",          :limit => 500
+    t.string   "official_website",     :limit => 500
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "seat_types", :force => true do |t|
+    t.string   "name",       :limit => 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "seats", :force => true do |t|
+    t.integer  "level_id",                    :null => false
+    t.integer  "seat_type_id",                :null => false
+    t.string   "name",         :limit => 200
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name",         :limit => 100
+    t.string   "abbreviation", :limit => 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_sessions", :force => true do |t|
     t.string   "session_id", :null => false

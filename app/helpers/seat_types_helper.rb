@@ -1,0 +1,2 @@
+module SeatTypesHelper
+end

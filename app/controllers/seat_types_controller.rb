@@ -1,0 +1,2 @@
+class SeatTypesController < ApplicationController
+end
