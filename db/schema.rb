@@ -20,14 +20,14 @@ ActiveRecord::Schema.define(:version => 20100202164256) do
   end
 
   create_table "committees", :force => true do |t|
-    t.integer  "level_id",                  :null => false
+    t.integer  "level_id"
     t.string   "name",       :limit => 200
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "counties", :force => true do |t|
-    t.integer  "state_id",                  :null => false
+    t.integer  "state_id"
     t.string   "name",       :limit => 200
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,16 +40,18 @@ ActiveRecord::Schema.define(:version => 20100202164256) do
   end
 
   create_table "parties", :force => true do |t|
-    t.string   "name",       :limit => 100
+    t.string   "name",         :limit => 100
+    t.string   "abbreviation", :limit => 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "politicians", :force => true do |t|
-    t.integer  "party_id",                            :null => false
-    t.integer  "seat_id",                             :null => false
+    t.integer  "party_id"
+    t.integer  "seat_id"
     t.string   "firstname",            :limit => 50
     t.string   "lastname",             :limit => 50
+    t.string   "title",                :limit => 100
     t.string   "twitter",              :limit => 30
     t.string   "campaign_website",     :limit => 500
     t.string   "email",                :limit => 200

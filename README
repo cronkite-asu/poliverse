@@ -9,6 +9,10 @@ issue and we'll investigate. Some things are simply not working and will be addr
 
 == Installation and Setup
 
+"fastercsv" is used for the population task:
+  
+  gem install fastercsv
+
 Poliverse is a Ruby on Rails application. As such, you'll need a recent version (2.3.5+):
 
   gem install rails -v 2.3.5
