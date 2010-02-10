@@ -4,7 +4,7 @@
 # Table name: counties
 #
 #  id         :integer(4)      not null, primary key
-#  state_id   :integer(4)      not null
+#  state_id   :integer(4)
 #  name       :string(200)
 #  created_at :datetime
 #  updated_at :datetime

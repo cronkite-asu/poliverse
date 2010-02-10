@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100202164256) do
+ActiveRecord::Schema.define(:version => 20100209213704) do
 
   create_table "committee_memberships", :force => true do |t|
     t.integer  "committee_id",                    :null => false
@@ -46,22 +46,36 @@ ActiveRecord::Schema.define(:version => 20100202164256) do
     t.datetime "updated_at"
   end
 
+  create_table "phones", :force => true do |t|
+    t.integer  "politician_id", :null => false
+    t.string   "label"
+    t.string   "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "politicians", :force => true do |t|
     t.integer  "party_id"
-    t.integer  "seat_id"
+    t.integer  "county_id"
+    t.string   "seat_title"
     t.string   "firstname",            :limit => 50
     t.string   "lastname",             :limit => 50
     t.string   "title",                :limit => 100
     t.string   "twitter",              :limit => 30
     t.string   "campaign_website",     :limit => 500
     t.string   "email",                :limit => 200
+    t.string   "phone",                :limit => 30
+    t.string   "fax",                  :limit => 30
     t.text     "election_history"
-    t.string   "graphic_file_name"
-    t.string   "graphic_content_type"
-    t.string   "graphic_file_size"
-    t.datetime "graphic_updated_at"
+    t.text     "committees"
+    t.string   "governance"
+    t.string   "governance_level"
     t.string   "contact_url",          :limit => 500
     t.string   "official_website",     :limit => 500
+    t.string   "graphic_file_name",                   :default => "placeholder.png"
+    t.string   "graphic_content_type"
+    t.integer  "graphic_file_size"
+    t.datetime "graphic_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20100202164256) do
   create_table "seats", :force => true do |t|
     t.integer  "level_id",                    :null => false
     t.integer  "seat_type_id",                :null => false
+    t.integer  "state_id"
     t.string   "name",         :limit => 200
     t.datetime "created_at"
     t.datetime "updated_at"

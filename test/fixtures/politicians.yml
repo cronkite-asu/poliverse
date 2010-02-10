@@ -1,23 +1,30 @@
 # == Schema Information
-# Schema version: 20100202164256
+# Schema version: 20100209213704
 #
 # Table name: politicians
 #
 #  id                   :integer(4)      not null, primary key
-#  party_id             :integer(4)      not null
-#  seat_id              :integer(4)      not null
+#  party_id             :integer(4)
+#  county_id            :integer(4)
+#  seat_title           :string(255)
 #  firstname            :string(50)
 #  lastname             :string(50)
+#  title                :string(100)
 #  twitter              :string(30)
 #  campaign_website     :string(500)
 #  email                :string(200)
+#  phone                :string(30)
+#  fax                  :string(30)
 #  election_history     :text
-#  graphic_file_name    :string(255)
-#  graphic_content_type :string(255)
-#  graphic_file_size    :string(255)
-#  graphic_updated_at   :datetime
+#  committees           :text
+#  governance           :string(255)
+#  governance_level     :string(255)
 #  contact_url          :string(500)
 #  official_website     :string(500)
+#  graphic_file_name    :string(255)     default("placeholder.png")
+#  graphic_content_type :string(255)
+#  graphic_file_size    :integer(4)
+#  graphic_updated_at   :datetime
 #  created_at           :datetime
 #  updated_at           :datetime
 #
