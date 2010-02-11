@@ -1,0 +1,2 @@
+class FaxesController < ApplicationController
+end

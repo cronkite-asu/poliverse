@@ -1,0 +1,80 @@
+# Typus Models Configuration File
+#
+# Use the README file on the same folder as this file as a reference to
+# customize this file to your needs.
+
+
+Fax:
+  fields:
+    list: label, number
+    form: label, number
+    show: id, label, number, created_at, updated_at, politician
+  actions:
+    index:
+    edit:
+  order_by:
+  relationships: politician
+  filters:
+  search:
+  application: Poliverse
+  description:
+
+Party:
+  fields:
+    list: name, abbreviation
+    form: name, abbreviation
+    show: id, name, abbreviation, created_at, updated_at
+  actions:
+    index:
+    edit:
+  order_by:
+  relationships: 
+  filters:
+  search:
+  application: Poliverse
+  description:
+
+Phone:
+  fields:
+    list: label, number
+    form: label, number
+    show: id, label, number, created_at, updated_at, politician
+  actions:
+    index:
+    edit:
+  order_by:
+  relationships: politician
+  filters:
+  search:
+  application: Poliverse
+  description:
+
+Politician:
+  fields:
+    list: firstname, lastname, title, governance, governance_level, party
+    form: firstname, lastname, title, twitter, campaign_website, email, election_history, committees, governance, governance_level, contact_url, official_website, graphic_file_name, party
+    show: id, firstname, lastname, title, twitter, campaign_website, email, election_history, committees, governance, governance_level, contact_url, official_website, graphic_file_name, created_at, updated_at, party
+  actions:
+    index:
+    edit:
+  order_by:
+  relationships: faxes, party, phones
+  filters:
+  search:
+  application: Poliverse
+  description:
+
+State:
+  fields:
+    list: name, abbreviation
+    form: name, abbreviation
+    show: id, name, abbreviation, created_at, updated_at
+  actions:
+    index:
+    edit:
+  order_by:
+  relationships: 
+  filters:
+  search:
+  application: Poliverse
+  description:

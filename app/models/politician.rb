@@ -31,13 +31,12 @@
 
 class Politician < ActiveRecord::Base
   belongs_to :party
-  belongs_to :seat
-  belongs_to :county
   has_many :phones
+  has_many :faxes
   has_attached_file :graphic, :styles => { :fullsize => "69x104>", :thumb => "48x72>" }
   
   def to_json( options = {} )
-    { :id => id, :party => "(#{ party.abbreviation })", :title => "#{ firstname } #{ lastname }", :photo => "bios/placeholder.png", :firstname => firstname, :lastname => lastname, :seat => governance_level + ' ' + governance, :hasChild => true, :fontSize => 16, :phone => "555-555-5555", :fax => "555-555-5555", :email => email, :committees => committees.gsub!( "\n", ", "), :official_website => official_website }.to_json
+    { :id => id, :party => "(#{ party.abbreviation })", :title => "#{ firstname } #{ lastname }", :photo => "bios/placeholder.png", :firstname => firstname, :lastname => lastname, :seat => governance_level + ', ' + governance, :governance => governance, :governance_level => governance_level, :hasChild => true, :fontSize => 16, :phones => phones, :faxes => faxes, :email => email, :committees => committees.gsub( "\n", ", "), :official_website => official_website }.to_json
   end
   
 end

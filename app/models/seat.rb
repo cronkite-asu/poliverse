@@ -15,7 +15,7 @@
 class Seat < ActiveRecord::Base
   belongs_to :level
   belongs_to :seat_type
-  @@seat_titles = [ 'Arizona House', 'Arizona Senate', 'U.S House of Representatives', 'U.S. Senate' ]
+  @@seat_titles = [ 'Arizona House', 'Arizona Senate', 'U.S. House of Representatives', 'U.S. Senate' ]
   
   def self.seat_titles
     @@seat_titles

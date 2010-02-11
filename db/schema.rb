@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100209213704) do
+ActiveRecord::Schema.define(:version => 20100211014027) do
 
   create_table "committee_memberships", :force => true do |t|
     t.integer  "committee_id",                    :null => false
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(:version => 20100209213704) do
   create_table "counties", :force => true do |t|
     t.integer  "state_id"
     t.string   "name",       :limit => 200
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "faxes", :force => true do |t|
+    t.integer  "politician_id", :null => false
+    t.string   "label"
+    t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -98,6 +106,20 @@ ActiveRecord::Schema.define(:version => 20100209213704) do
   create_table "states", :force => true do |t|
     t.string   "name",         :limit => 100
     t.string   "abbreviation", :limit => 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "typus_users", :force => true do |t|
+    t.string   "first_name",       :default => "",    :null => false
+    t.string   "last_name",        :default => "",    :null => false
+    t.string   "role",                                :null => false
+    t.string   "email",                               :null => false
+    t.boolean  "status",           :default => false
+    t.string   "token",                               :null => false
+    t.string   "salt",                                :null => false
+    t.string   "crypted_password",                    :null => false
+    t.string   "preferences"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

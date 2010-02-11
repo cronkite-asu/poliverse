@@ -1,9 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :faxes
+
   map.resources :phones
 
   map.resources :committee_memberships
 
-  map.resources :politicians, :has_many => [ :committee_membershipts, :seats ], :collection => { :azhouse => :get, :azsenate => :get, :uscongress => :get, :local => :get }
+  map.resources :politicians, :has_many => [ :committee_membershipts, :seats ], :collection => { :azhouse => :get, :azsenate => :get, :uscongress => :get, :local => :get, :congressional_governance => :get, :legislative_governance => :get, :county_governance => :get, :gps => :get }
 
   map.resources :committees, :has_many => :committee_memberships
 

@@ -27,7 +27,7 @@ namespace :db do
     office_seat_type = SeatType.new( :name => 'Office' ).save!
   
     FasterCSV.foreach( File.join( File.dirname( __FILE__), 'assets', 'azpolitics.csv' ), :headers => :first_row ) do | row |
-      politician = Politician.new( :firstname => row[ 'ZFIRSTNAME' ], :lastname => row[ 'ZLASTNAME' ], :twitter => row[ 'ZTWITTER' ], :campaign_website => row[ 'ZCAMPAIGN_WEBSITE' ], :email => row[ 'ZEMAIL' ], :election_history => row[ 'ZELECTION_HISTORY' ], :title => row[ 'ZTITLE' ], :contact_url => row[ 'ZCONTACT_FORM' ], :official_website => row[ 'ZOFFICIAL_WEBSITE' ], :committees => row[ 'ZCOMMITTEES' ], :governance => row[ 'GOVERNANCE' ], :governance_level => row[ 'GOVERNANCE_LEVEL' ], :graphic_file_name => ( row[ 'ZIMAGE_FILENAME' ] == nil ? 'placeholder.png' : row[ 'ZIMAGE_FILENAME' ] ), :seat_title => row[ 'ZBODY' ] )
+      politician = Politician.new( :firstname => row[ 'ZFIRSTNAME' ], :lastname => row[ 'ZLASTNAME' ], :twitter => row[ 'ZTWITTER' ], :campaign_website => row[ 'ZCAMPAIGN_WEBSITE' ], :email => row[ 'ZEMAIL' ].strip, :election_history => row[ 'ZELECTION_HISTORY' ], :title => row[ 'ZTITLE' ], :contact_url => row[ 'ZCONTACT_FORM' ], :official_website => row[ 'ZOFFICIAL_WEBSITE' ], :committees => row[ 'ZCOMMITTEES' ], :governance => row[ 'GOVERNANCE' ], :governance_level => row[ 'GOVERNANCE_LEVEL' ], :graphic_file_name => ( row[ 'ZIMAGE_FILENAME' ] == nil ? 'placeholder.png' : row[ 'ZIMAGE_FILENAME' ] ), :seat_title => row[ 'ZBODY' ] )
       politician.party = Party.find_by_abbreviation( row[ 'ZPARTY' ] )
       politician.county =  County.find_by_name( row[ 'ZDISTRICT' ] )
       row[ 'ZPHONE' ].split( "*" ).each do | s | 
@@ -44,7 +44,21 @@ namespace :db do
           label = "Primary"
         end
         politician.phones << Phone.new( :label => label, :number => number )
-        #puts ( s.strip!.match( /:\((.*)\)/ ) == nil ? 'GOOD' : s.strip!.match( /:\((.*)\)/ )[1] )
+      end
+      row[ 'ZFAX' ].split( "*" ).each do | s | 
+        if s.strip! != nil
+          if s.match( /:\((.*)\)/ ) != nil
+            number = s.gsub( /:\((.*)\)/, "" )
+            label = s.match( /:\((.*)\)/ )[1]
+          else
+            number = s
+            label = "Primary"
+          end
+        else
+          number = s
+          label = "Primary"
+        end
+        politician.faxes << Fax.new( :label => label, :number => number )
       end
       politician.save!
       
