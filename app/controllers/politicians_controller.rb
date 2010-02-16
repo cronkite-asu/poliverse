@@ -1,5 +1,7 @@
 class PoliticiansController < ApplicationController
   
+  caches_action :index, :azhouse, :azsenate, :uscongress, :local, :congressional_governance, :legislative_governance, :county_governance
+  
   def index
     if params[ :governance ] != nil
       case params[ :governance_level ]
