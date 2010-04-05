@@ -52,7 +52,7 @@ Phone:
 Politician:
   fields:
     list: firstname, lastname, title, governance, governance_level, party
-    form: firstname, lastname, title, twitter, campaign_website, email, election_history, committees, governance, governance_level, contact_url, official_website, graphic_file_name, party
+    form: firstname, lastname, title, twitter, campaign_website, email, bio, politics, committees, governance, governance_level, contact_url, official_website, graphic_file_name, party
     show: id, firstname, lastname, title, twitter, campaign_website, email, election_history, committees, governance, governance_level, contact_url, official_website, graphic_file_name, created_at, updated_at, party
   actions:
     index:

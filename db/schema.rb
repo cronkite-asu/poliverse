@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100211014027) do
+ActiveRecord::Schema.define(:version => 20100405040606) do
 
   create_table "committee_memberships", :force => true do |t|
     t.integer  "committee_id",                    :null => false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20100211014027) do
     t.string   "email",                :limit => 200
     t.string   "phone",                :limit => 30
     t.string   "fax",                  :limit => 30
-    t.text     "election_history"
+    t.text     "politics"
     t.text     "committees"
     t.string   "governance"
     t.string   "governance_level"
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(:version => 20100211014027) do
     t.datetime "graphic_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "bio"
+    t.string   "uuid_key"
   end
 
   create_table "seat_types", :force => true do |t|
