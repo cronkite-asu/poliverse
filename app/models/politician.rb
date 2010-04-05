@@ -31,6 +31,7 @@
 
 class Politician < ActiveRecord::Base
   belongs_to :party
+  belongs_to :county
   has_many :phones
   has_many :faxes
   has_attached_file :graphic, :styles => { :fullsize => "69x104>", :thumb => "48x72>" }
