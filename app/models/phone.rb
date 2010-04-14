@@ -13,14 +13,4 @@
 
 class Phone < ActiveRecord::Base
   belongs_to :politician
-  
-  before_save :set_uuid
-  
-  private
-  
-  def set_uuid
-    self.politician.uuid_key = UUIDTools::UUID.timestamp_create.to_s
-    self.politician.save!
-  end
-  
 end

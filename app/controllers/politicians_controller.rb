@@ -30,11 +30,7 @@ class PoliticiansController < ApplicationController
   end
   
   def azsenate
-<<<<<<< HEAD
     @politicians = Politician.find( :all, :include => [ :phones, :faxes, :party ], :conditions => [ 'governance_level = ?', 'Arizona Senate' ], :order => "lastname asc" )
-=======
-    @politicians = Politician.find( :all, :include => :party, :conditions => [ 'governance_level = ?', 'Arizona Senate' ], :order => "lastname asc" )
->>>>>>> 68b99136c5e4991e6b843082c4e8f8c00cc088b0
     
     respond_to do | format |
       format.json { render :json => { :results => @politicians }.to_json }
@@ -104,16 +100,6 @@ class PoliticiansController < ApplicationController
     
     respond_to do | format |
       format.json { render :json => { :results => @politicians }.to_json }
-    end
-    
-  end
-  
-  def update_remote_db
-    
-    politicians = Politicians.find( :all, :conditions => [ 'uuid_key in ( ? ) and updated_at >= ?', params[ :remote_update ][ :uuid_key ], params[ :remote_update ][ :updated_at ] ] )
-    
-    respond_to do | format |
-      format.json { render :json => politicians }
     end
     
   end
