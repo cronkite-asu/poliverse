@@ -81,7 +81,7 @@ class PoliticiansController < ApplicationController
     
     url = URI.parse( 'http://173.203.212.119:8000' )
     res = Net::HTTP.start( url.host, url.port ) do | http |
-      http.get( '/polytest/matchLayers?lat=' + params[ :lat ] + '&lng=' + params[ :lng ] )
+      http.get( '/matchLayers/' + params[ :lat ] + '/' + params[ :lng ] + '/' )
     end
     
     #@politician = Politician.find( :all, :include => :party, :conditions => [ '' ] )
@@ -89,14 +89,18 @@ class PoliticiansController < ApplicationController
     congressional_district = res_response[ "Congressional" ]
     counties = res_response[ "Counties" ][0] + " County" 
     legislative_district = res_response[ "Legislative" ]
-    
+    supervisors = res_response[ "Supervisor" ] 
+
     congressional_politicians = Politician.find( :all, :include => :party, :conditions => [ "( governance = ? and governance_level IN ( 'U.S. House of Representatives', 'U.S. Senate'  ) ) or ( governance = 'Arizona' and governance_level = 'U.S. Senate' )", "District #{ congressional_district }" ], :order => "lastname asc" )
-    county_politicians = Politician.find( :all, :include => :party, :conditions => [ "governance = ? and governance_level NOT IN ( 'Arizona', 'Arizona House', 'Arizona Senate', 'U.S. House of Representatives', 'U.S. Senate' )", counties ], :order => "lastname asc" )
-    legislative_politicians = Politician.find( :all, :include => :party, :conditions => [ "governance = ? and governance_level IN ( 'Arizona House', 'Arizona Senate' )", "District #{ legislative_district }" ], :order => "lastname asc" )
+    county_politicians = Politician.find( :all, :include => :party, :conditions => [ "governance = ? and governance_level NOT IN ( 'Arizona', 'Arizona House', 'Arizona Senate', 'U.S. House of Representatives', 'U.S. Senate' ) and district is null", counties ], :order => "lastname asc" )
+    legislative_politicians = Politician.find( :all, :include => :party, :conditions => [ "governance = ? and governance_level IN ( 'Arizona House', 'Arizona Senate' ) and district is NULL", "District #{ legislative_district }" ], :order => "lastname asc" )
+    supervisor_politicians = Politician.find( :all, :include => :party, :conditions => [ "governance = ? and district = ?", counties, supervisors ], :order => "lastname asc" )
+
     @politicians = []
     @politicians.concat( congressional_politicians )
     @politicians.concat( county_politicians )
     @politicians.concat( legislative_politicians )
+    @politicians.concat( supervisor_politicians )
     
     respond_to do | format |
       format.json { render :json => { :results => @politicians }.to_json }

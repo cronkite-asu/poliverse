@@ -36,7 +36,7 @@ class Politician < ActiveRecord::Base
   has_attached_file :graphic, :styles => { :fullsize => "69x104>", :thumb => "48x72>" }
   
   def to_json( options = {} )
-    { :id => id, :party => "(#{ party.abbreviation })", :title => "#{ firstname } #{ lastname }", :photo => 'http://67.23.22.72' + graphic.url( :fullsize ), :firstname => firstname, :lastname => lastname, :seat => governance_level + ', ' + governance, :governance => governance, :governance_level => governance_level, :hasChild => true, :fontSize => 16, :phones => phones, :faxes => faxes, :email => email, :bio => bio, :politics => politics, :committees => committees.gsub( "\n", "").gsub( "\r", "" ), :official_website => official_website, :campaign_website => campaign_website }.to_json
+    { :id => id, :party => "(#{ party.abbreviation })", :title => "#{ firstname } #{ lastname }", :photo => 'http://173.203.212.119' + graphic.url( :fullsize ), :firstname => firstname, :lastname => lastname, :seat => governance_level + ', ' + governance, :governance => governance, :governance_level => governance_level, :hasChild => true, :fontSize => 16, :phones => phones, :faxes => faxes, :email => email, :bio => bio, :politics => politics, :committees => committees.gsub( "\n", "").gsub( "\r", "" ), :official_website => official_website, :campaign_website => campaign_website }.to_json
   end
   
 end
