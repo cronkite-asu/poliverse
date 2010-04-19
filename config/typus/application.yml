@@ -7,7 +7,7 @@
 Fax:
   fields:
     list: label, number
-    form: label, number
+    form: label, number, politician
     show: id, label, number, created_at, updated_at, politician
   actions:
     index:
@@ -37,7 +37,7 @@ Party:
 Phone:
   fields:
     list: label, number
-    form: label, number
+    form: label, number, politician
     show: id, label, number, created_at, updated_at, politician
   actions:
     index:
@@ -60,7 +60,7 @@ Politician:
   order_by:
   relationships: faxes, party, phones
   filters:
-  search:
+  search: firstname, lastname, governance, governance_level
   application: Poliverse
   description:
 

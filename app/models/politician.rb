@@ -39,4 +39,8 @@ class Politician < ActiveRecord::Base
     { :id => id, :party => "(#{ party.abbreviation })", :title => "#{ firstname } #{ lastname }", :photo => 'http://173.203.212.119' + graphic.url( :fullsize ), :firstname => firstname, :lastname => lastname, :seat => governance_level + ', ' + governance, :governance => governance, :governance_level => governance_level, :hasChild => true, :fontSize => 16, :phones => phones, :faxes => faxes, :email => email, :bio => bio, :politics => politics, :committees => committees.gsub( "\n", "").gsub( "\r", "" ), :official_website => official_website, :campaign_website => campaign_website }.to_json
   end
   
+  def typus_name
+    firstname + " " + lastname
+  end
+  
 end
